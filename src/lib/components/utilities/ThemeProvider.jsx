@@ -1,10 +1,10 @@
 import { ThemeProvider as StyledProvider } from 'styled-components';
-import theme from './Theme';
+import { theme as defaultTheme } from './Theme';
 import GlobalStyles from './GlobalStyles';
 
-const ThemeProvider = ({customTheme, children}) => {
+const ThemeProvider = ({theme, children}) => {
   return (
-    <StyledProvider theme={customTheme || theme}>
+    <StyledProvider theme={theme || defaultTheme}>
       <GlobalStyles />
       {children}
     </StyledProvider>

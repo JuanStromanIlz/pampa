@@ -76,12 +76,12 @@ const StyledInfo = styled.div`
   }
 `;
 
-const CloseButton = ({...props}) => {
+const CloseButton = ({children, ...props}) => {
   let { onClick, ...rest } = props;
 
   return (
     <StyledCloseContainer>
-      <Button.Icon {...rest} onClick={onClick}>close</Button.Icon>
+      <Button.Icon {...rest} onClick={onClick}>{children}</Button.Icon>
     </StyledCloseContainer>
   );
 };
@@ -95,19 +95,19 @@ const PrevButton = ({children, ...props}) => {
 };
 
 const NextButton = ({children, ...props}) => {
-  const { next, index, images } = useContext(GalleryContext);
+  const { next, index, items } = useContext(GalleryContext);
 
   return (
-    <Button.Icon disabled={index + 1 === images} onClick={next} {...props}>{children}</Button.Icon>
+    <Button.Icon disabled={index + 1 === items} onClick={next} {...props}>{children}</Button.Icon>
   );
 };
 
 const Info = ({children, ...props}) => {
-  const { images, index } = useContext(GalleryContext);
+  const { items, index } = useContext(GalleryContext);
 
   return (
     <StyledInfo {...props}>
-      <Text>{`${index + 1} / ${images}`}</Text>
+      <Text>{`${index + 1} / ${items}`}</Text>
       <div className='buttons'>
         {children}
       </div>
@@ -129,10 +129,10 @@ const Slide = ({slide, children, ...props}) => {
   );
 }
 
-const Gallery = ({open, images, index, children, ...props}) => {
+const Gallery = ({open, items, index, children, ...props}) => {
   const target = usePortal('modal-gallery');
   const [galleryData, setGalleryData] = useState({
-    images: [],
+    items: 0,
     index: 0
   });
   const [touch, setTouch] = useState({
@@ -146,7 +146,7 @@ const Gallery = ({open, images, index, children, ...props}) => {
         return {...prev}
       }
       return {
-        images: prev.images,
+        items: prev.items,
         index: prev.index -1
       }
     });
@@ -155,11 +155,11 @@ const Gallery = ({open, images, index, children, ...props}) => {
   function nextImage() {
     setGalleryData(prev => {
       let lastCard = prev.index + 1;
-      if (lastCard === prev.images.length) {
+      if (lastCard === prev.items) {
         return {...prev}
       }
       return {
-        images: prev.images,
+        items: prev.items,
         index: prev.index +1
       }
     });
@@ -202,11 +202,11 @@ const Gallery = ({open, images, index, children, ...props}) => {
   useEffect(() => {
     if (open) {
       setGalleryData({
-        images: images,
+        items: items,
         index: index
       });
     }
-  }, [open, images, index]);
+  }, [open, items, index]);
 
   return (
     open &&
@@ -223,7 +223,7 @@ const Gallery = ({open, images, index, children, ...props}) => {
           prev: prevImage,
           next: nextImage,
           index: galleryData.index,
-          images: galleryData.images.length
+          items: galleryData.items
         }}>
           {children}
         </GalleryContext.Provider>

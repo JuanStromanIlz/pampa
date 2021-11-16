@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const StyledButton = styled.div`
   display: flex;
@@ -47,29 +46,6 @@ const StyledButton = styled.div`
   }
 `;
 
-const StyledLink = styled(Link)`
-  display: contents;
-  text-decoration: none;
-  color: inherit;
-  ${p => p.sx && p.sx};
-`;
-
-const StyledRoundedButton = styled(StyledButton)`
-  width: 64px;
-  height: 64px;
-  aspect-ratio: 1;
-  padding: 18px 0;
-  border-radius: 100%;
-  span {
-    font-size: 11px;
-    margin: auto;
-    text-align: center;
-    line-height: 1;
-    font-weight: 700;
-  }
-  ${p => p.sx && p.sx};
-`;
-
 const StyledIconButton = styled.button`
   display: flex;
   cursor: pointer;
@@ -106,14 +82,8 @@ const Button = ({children, variant, filled, sx, ...props}) => (
   </StyledButton>
 );
 
-const LinkButton = ({children, to, sx, ...props}) => <StyledLink to={to}><Button sx={sx} {...props}>{children}</Button></StyledLink>;
-
-const RoundedButton = ({children, sx, ...props}) => <StyledRoundedButton sx={sx} {...props}><span>{children}</span></StyledRoundedButton>;
-
 const IconButton = ({children, sx, ...props}) => <StyledIconButton sx={sx} {...props}><span className='material-icons'>{children}</span></StyledIconButton>;
 
-Button.Link = LinkButton;
-Button.Rounded = RoundedButton;
 Button.Icon = IconButton;
 
 export default Button;
