@@ -13,6 +13,7 @@ A little popup alert box to display info to the user, like success actions or er
 ## Props
 ### <Alert />
 Property | type | default | required | porpose
+--- | --- | --- | --- | ---
 open | `boolean` | | true | If true the components shows up.
 close | `function` | | false | The action to close the components, mostly it could set `false` to the `open` prop.
 delay | `number` | 3000 | false | The time it takes to the alert dissapear.
@@ -23,5 +24,6 @@ sx | `js object` | | false | You can pass custom styles to the component itself 
 
 ### <Alert.Message>
 Property | type | default | required | porpose
+--- | --- | --- | --- | ---
 children | `string` | | false | display the text of the alert.
 sx | `js object` | | false | You can pass custom styles to the component itself instead of use *element.style*
