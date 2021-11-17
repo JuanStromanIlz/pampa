@@ -1,4 +1,4 @@
-const theme = {
+const defaultTheme = {
   state: {
     success: '#2e7d32',
     warning: '#ED6C02',
@@ -7,4 +7,4 @@ const theme = {
   }
 };
 
-export default theme;
+export default defaultTheme;

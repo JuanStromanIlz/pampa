@@ -1,13 +1,13 @@
 "use strict";
 
-require("core-js/modules/es.object.assign.js");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _jsxRuntime = require("react/jsx-runtime");
 
 const _excluded = ["children", "variant", "filled", "sx"],
       _excluded2 = ["children", "sx"];
@@ -16,7 +16,11 @@ var _templateObject, _templateObject2;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -37,12 +41,17 @@ const Button = _ref => {
   } = _ref,
       props = _objectWithoutProperties(_ref, _excluded);
 
-  return /*#__PURE__*/React.createElement(StyledButton, {
-    variant: variant
-  }, /*#__PURE__*/React.createElement("button", _extends({
-    sx: sx,
-    className: filled && 'filled--button'
-  }, props), /*#__PURE__*/React.createElement("span", null, children)));
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(StyledButton, {
+    variant: variant,
+    children: /*#__PURE__*/(0, _jsxRuntime.jsx)("button", _objectSpread(_objectSpread({
+      sx: sx,
+      className: filled && 'filled--button'
+    }, props), {}, {
+      children: /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+        children: children
+      })
+    }))
+  });
 };
 
 const IconButton = _ref2 => {
@@ -52,11 +61,14 @@ const IconButton = _ref2 => {
   } = _ref2,
       props = _objectWithoutProperties(_ref2, _excluded2);
 
-  return /*#__PURE__*/React.createElement(StyledIconButton, _extends({
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(StyledIconButton, _objectSpread(_objectSpread({
     sx: sx
-  }, props), /*#__PURE__*/React.createElement("span", {
-    className: "material-icons"
-  }, children));
+  }, props), {}, {
+    children: /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+      className: "material-icons",
+      children: children
+    })
+  }));
 };
 
 Button.Icon = IconButton;

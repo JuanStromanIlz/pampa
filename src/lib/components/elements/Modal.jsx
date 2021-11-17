@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { createPortal } from 'react-dom';
-import usePortal from 'lib/hooks/usePortal';
+import usePortal from '../../hooks/usePortal';
 import Box from './Box';
 import Button from './Button';
 import Text from './Text';

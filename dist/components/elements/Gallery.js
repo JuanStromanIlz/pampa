@@ -1,7 +1,5 @@
 "use strict";
 
-require("core-js/modules/es.object.assign.js");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -15,11 +13,13 @@ var _reactDom = require("react-dom");
 
 var _react = require("react");
 
-var _usePortal = _interopRequireDefault(require("lib/hooks/usePortal"));
+var _usePortal = _interopRequireDefault(require("../../hooks/usePortal"));
 
 var _Text = _interopRequireDefault(require("./Text"));
 
 var _Button = _interopRequireDefault(require("./Button"));
+
+var _jsxRuntime = require("react/jsx-runtime");
 
 const _excluded = ["children"],
       _excluded2 = ["onClick"],
@@ -39,8 +39,6 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -73,9 +71,12 @@ const CloseButton = _ref => {
   } = props,
       rest = _objectWithoutProperties(props, _excluded2);
 
-  return /*#__PURE__*/React.createElement(StyledCloseContainer, null, /*#__PURE__*/React.createElement(_Button.default.Icon, _extends({}, rest, {
-    onClick: onClick
-  }), children));
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(StyledCloseContainer, {
+    children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Button.default.Icon, _objectSpread(_objectSpread({}, rest), {}, {
+      onClick: onClick,
+      children: children
+    }))
+  });
 };
 
 const PrevButton = _ref2 => {
@@ -88,10 +89,12 @@ const PrevButton = _ref2 => {
     prev,
     index
   } = (0, _react.useContext)(GalleryContext);
-  return /*#__PURE__*/React.createElement(_Button.default.Icon, _extends({
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_Button.default.Icon, _objectSpread(_objectSpread({
     disabled: index === 0,
     onClick: prev
-  }, props), children);
+  }, props), {}, {
+    children: children
+  }));
 };
 
 const NextButton = _ref3 => {
@@ -105,10 +108,12 @@ const NextButton = _ref3 => {
     index,
     items
   } = (0, _react.useContext)(GalleryContext);
-  return /*#__PURE__*/React.createElement(_Button.default.Icon, _extends({
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_Button.default.Icon, _objectSpread(_objectSpread({
     disabled: index + 1 === items,
     onClick: next
-  }, props), children);
+  }, props), {}, {
+    children: children
+  }));
 };
 
 const Info = _ref4 => {
@@ -121,9 +126,14 @@ const Info = _ref4 => {
     items,
     index
   } = (0, _react.useContext)(GalleryContext);
-  return /*#__PURE__*/React.createElement(StyledInfo, props, /*#__PURE__*/React.createElement(_Text.default, null, "".concat(index + 1, " / ").concat(items)), /*#__PURE__*/React.createElement("div", {
-    className: "buttons"
-  }, children));
+  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(StyledInfo, _objectSpread(_objectSpread({}, props), {}, {
+    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_Text.default, {
+      children: "".concat(index + 1, " / ").concat(items)
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      className: "buttons",
+      children: children
+    })]
+  }));
 };
 
 const Slider = _ref5 => {
@@ -132,7 +142,9 @@ const Slider = _ref5 => {
   } = _ref5,
       props = _objectWithoutProperties(_ref5, _excluded6);
 
-  return /*#__PURE__*/React.createElement(StyledSlider, props, children);
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(StyledSlider, _objectSpread(_objectSpread({}, props), {}, {
+    children: children
+  }));
 };
 
 const Slide = _ref6 => {
@@ -145,9 +157,12 @@ const Slide = _ref6 => {
   const {
     index
   } = (0, _react.useContext)(GalleryContext);
-  return /*#__PURE__*/React.createElement(StyledSlide, props, /*#__PURE__*/React.createElement("div", {
-    className: "".concat(slide === index && 'show')
-  }, children));
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(StyledSlide, _objectSpread(_objectSpread({}, props), {}, {
+    children: /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      className: "".concat(slide === index && 'show'),
+      children: children
+    })
+  }));
 };
 
 const Gallery = _ref7 => {
@@ -245,20 +260,22 @@ const Gallery = _ref7 => {
       });
     }
   }, [open, items, index]);
-  return open && /*#__PURE__*/(0, _reactDom.createPortal)( /*#__PURE__*/React.createElement(GalleryContainer, _extends({}, props, {
+  return open && /*#__PURE__*/(0, _reactDom.createPortal)( /*#__PURE__*/(0, _jsxRuntime.jsx)(GalleryContainer, _objectSpread(_objectSpread({}, props), {}, {
     onTouchStart: touchStart,
     onTouchEnd: touchEnd,
     onTouchMove: touchMove,
     onKeyDown: keyPress,
-    tabIndex: 0
-  }), /*#__PURE__*/React.createElement(GalleryContext.Provider, {
-    value: {
-      prev: prevImage,
-      next: nextImage,
-      index: galleryData.index,
-      items: galleryData.items
-    }
-  }, children)), target);
+    tabIndex: 0,
+    children: /*#__PURE__*/(0, _jsxRuntime.jsx)(GalleryContext.Provider, {
+      value: {
+        prev: prevImage,
+        next: nextImage,
+        index: galleryData.index,
+        items: galleryData.items
+      },
+      children: children
+    })
+  })), target);
 };
 
 Gallery.Info = Info;

@@ -6,7 +6,7 @@ import Card from './components/elements/Card';
 import Gallery from './components/elements/Gallery';
 import Image from './components/elements/Image';
 import Input from './components/elements/Input';
-import List from './components/elements/List';
+import List, { Item } from './components/elements/List';
 import Modal from './components/elements/Modal';
 import Tag from './components/elements/Tag';
 import Text from './components/elements/Text';
@@ -23,6 +23,7 @@ export {
   Image,
   Input,
   List,
+  Item,
   Modal,
   Tag,
   Text,

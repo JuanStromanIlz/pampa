@@ -1,4 +1,4 @@
-# PAMPA
+# Pampa React
 Library of React components, cleaner and customizable. Focus in a clean layout and open spaces.
 All components use [styled-components](https://styled-components.com/) so you can use all them tools.
 

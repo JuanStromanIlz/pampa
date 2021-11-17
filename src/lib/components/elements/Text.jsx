@@ -61,11 +61,16 @@ const Text = ({component, type, children, sx, ...props}) => {
   let { className, ...rest } = props;
   return (
     <StyledText>
-      <Field as={component} sx={sx} {...rest} className={`type${type || 400} ${className || ''}`}>
+      <Field as={component} sx={sx} {...rest} className={`type${type} ${className || ''}`}>
         {children}
       </Field>
     </StyledText>
   );
 }
+
+Text.defaultProps = {
+  type: 400,
+  component: 'span'
+};
 
 export default Text;

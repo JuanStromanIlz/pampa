@@ -15,6 +15,8 @@ var _react = require("react");
 
 var _Text = _interopRequireDefault(require("./Text"));
 
+var _jsxRuntime = require("react/jsx-runtime");
+
 const _excluded = ["error", "valid", "children", "sx"],
       _excluded2 = ["show", "variant", "children", "sx"],
       _excluded3 = ["name", "id", "sx"];
@@ -23,7 +25,11 @@ var _templateObject, _templateObject2, _templateObject3;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -46,13 +52,16 @@ const Container = _ref => {
   } = _ref,
       props = _objectWithoutProperties(_ref, _excluded);
 
-  return /*#__PURE__*/React.createElement(StyledContainer, {
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(StyledContainer, {
     error: error,
-    valid: valid
-  }, /*#__PURE__*/React.createElement("div", _extends({
-    className: "container--wrapper",
-    sx: sx
-  }, props), children));
+    valid: valid,
+    children: /*#__PURE__*/(0, _jsxRuntime.jsx)("div", _objectSpread(_objectSpread({
+      className: "container--wrapper",
+      sx: sx
+    }, props), {}, {
+      children: children
+    }))
+  });
 };
 
 const Message = _ref2 => {
@@ -64,14 +73,17 @@ const Message = _ref2 => {
   } = _ref2,
       props = _objectWithoutProperties(_ref2, _excluded2);
 
-  return /*#__PURE__*/React.createElement(StyledMessage, _extends({
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(StyledMessage, _objectSpread(_objectSpread({
     show: show,
     variant: variant,
     sx: sx
-  }, props), /*#__PURE__*/React.createElement(_Text.default, {
-    className: "message--wrapper",
-    type: 200
-  }, children));
+  }, props), {}, {
+    children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Text.default, {
+      className: "message--wrapper",
+      type: 200,
+      children: children
+    })
+  }));
 };
 
 const Input = _ref3 => {
@@ -86,20 +98,27 @@ const Input = _ref3 => {
   } = props,
       restProps = _objectWithoutProperties(props, _excluded3);
 
-  return /*#__PURE__*/React.createElement(StyledInput, null, /*#__PURE__*/React.createElement("input", _extends({
-    id: id,
-    sx: sx
-  }, restProps, {
-    onChange: e => setFilled(Boolean(e.target.value.length)),
-    onFocus: () => setFocused(true),
-    onBlur: () => setFocused(false)
-  })), /*#__PURE__*/React.createElement("fieldset", {
-    className: !focused && filled ? 'filled' : ''
-  }, /*#__PURE__*/React.createElement("legend", null, /*#__PURE__*/React.createElement("label", {
-    htmlFor: name
-  }, /*#__PURE__*/React.createElement(_Text.default, {
-    type: 300
-  }, name)))));
+  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(StyledInput, {
+    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread(_objectSpread({
+      id: id,
+      sx: sx
+    }, restProps), {}, {
+      onChange: e => setFilled(Boolean(e.target.value.length)),
+      onFocus: () => setFocused(true),
+      onBlur: () => setFocused(false)
+    })), /*#__PURE__*/(0, _jsxRuntime.jsx)("fieldset", {
+      className: !focused && filled ? 'filled' : '',
+      children: /*#__PURE__*/(0, _jsxRuntime.jsx)("legend", {
+        children: /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
+          htmlFor: name,
+          children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Text.default, {
+            type: 300,
+            children: name
+          })
+        })
+      })
+    })]
+  });
 };
 
 Input.Container = Container;
